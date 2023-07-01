@@ -60,6 +60,8 @@ const login = async (req, res) => {
         // console.log('email = ', email);
         // console.log('userFound = ', userFound);
         if (userFound) {
+            // console.log('userFound.avatar = ', userFound.avatar);
+
             const isValidPassword = await bcrypt.compare(password, userFound.password);
             if (isValidPassword) {
                 const JsonWebToken = jwt.sign(
@@ -74,6 +76,7 @@ const login = async (req, res) => {
                     email: userFound.email,
                     isAdmin: userFound.isAdmin,
                     accessToken: JsonWebToken,
+                    avatar: userFound?.avatar,
                 });
             } else {
                 res.status(401).json({
@@ -91,5 +94,4 @@ const login = async (req, res) => {
         });
     }
 };
-
 module.exports = { signup, login };

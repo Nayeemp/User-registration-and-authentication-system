@@ -7,6 +7,7 @@ import PublicRoute from './PublicRoute';
 import Home from './components/Home';
 import InvalidURL from './components/InvalidURL';
 import LogInForm from './components/LogInForm';
+import ProfilePic from './components/ProfilePic';
 import SignUpForm from './components/SignUpForm';
 import Header from './components/navbar/Header';
 import useLocalAuthCheck from './hook/useLocalAuthCheck';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/signup" element={<PublicRoute><SignUpForm /></PublicRoute>} />
         <Route path="/login" element={<PublicRoute><LogInForm /></PublicRoute>} />
+        <Route path="/profile" element={<PrivateRoute><ProfilePic /></PrivateRoute>} />
         <Route path="*" element={<InvalidURL />} />
       </Routes>
     </Router>

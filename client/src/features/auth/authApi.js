@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { apiSlice } from '../api/apiSlice';
-import { userLoggedIn } from './authSlice';
+import { updateProfile, userLoggedIn } from './authSlice';
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -51,7 +51,7 @@ export const authApi = apiSlice.injectEndpoints({
         try {
           // console.log('arg = ', arg);
           const result = await queryFulfilled;
-          // console.log('result = ', result);
+          console.log('result = ', result);
           // console.log('result.data.accessToken = ', result.data.accessToken);
           // console.log('result.data.name = ', result.data.name);
           // console.log('result.data.email = ', result.data.email);
@@ -72,6 +72,21 @@ export const authApi = apiSlice.injectEndpoints({
               email: result.data.email
             })
           );
+
+          if (result.data?.avatar) {
+            if (JSON.stringify(result.data.avatar) !== '{}') {
+              console.log('result.data.avatar = ', result.data.avatar);
+              console.log('aur');
+              localStorage.setItem(
+                'profile',
+                JSON.stringify({
+                  avatar: result.data.avatar
+                })
+              );
+
+              dispatch(updateProfile(result.data.avatar));
+            }
+          }
         } catch (err) {
           // do nothing
         }

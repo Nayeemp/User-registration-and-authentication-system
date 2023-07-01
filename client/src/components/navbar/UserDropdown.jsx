@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { userLoggedOut } from '../../features/auth/authSlice';
 
 function UserDropdown({ userUserDropdown }) {
@@ -31,6 +32,15 @@ function UserDropdown({ userUserDropdown }) {
         </span>
       </div>
       <ul className="py-2" aria-labelledby="user-menu-button">
+
+        <li>
+          <Link
+            to="/profile"
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white text-center"
+          >
+            Profile
+          </Link>
+        </li>
 
         <li>
           <span

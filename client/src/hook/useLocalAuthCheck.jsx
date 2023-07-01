@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { userLoggedIn } from '../features/auth/authSlice';
+import { updateProfile, userLoggedIn } from '../features/auth/authSlice';
 
 function useLocalAuthCheck() {
   const [authChecked, setAuthChecked] = useState(false);
@@ -8,6 +8,7 @@ function useLocalAuthCheck() {
 
   useEffect(() => {
     const localAuth = localStorage.getItem('auth');
+    const localProfile = localStorage.getItem('profile');
     // console.log(localAuth);
     if (localAuth) {
       const auth = JSON.parse(localAuth);
@@ -21,6 +22,11 @@ function useLocalAuthCheck() {
           })
         );
       }
+    }
+
+    if (localProfile) {
+      const profile = JSON.parse(localProfile);
+      dispatch(updateProfile(profile.avatar))
     }
 
     setAuthChecked(true);

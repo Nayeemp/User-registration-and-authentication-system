@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const userRoutes = require('./routes/userRoutes');
 const connectToDatabase = require('./connectToDatabase');
 const authRoutes = require('./routes/authRoutes');
 
@@ -13,6 +14,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/auth', authRoutes);
+
+app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
     res.send('Welcome to root Server');
