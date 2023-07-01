@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   accessToken: undefined,
   user: undefined,
-  email: undefined
+  email: undefined,
+  avatar: undefined
 };
 
 const authSlice = createSlice({
@@ -20,9 +21,14 @@ const authSlice = createSlice({
       state.accessToken = undefined;
       state.user = undefined;
       state.email = undefined;
+      state.avatar = undefined;
+    },
+
+    updateProfile: (state, action) => {
+      state.avatar = action.payload;
     }
   }
 });
 
-export const { userLoggedIn, userLoggedOut } = authSlice.actions;
+export const { userLoggedIn, userLoggedOut, updateProfile } = authSlice.actions;
 export default authSlice.reducer;
